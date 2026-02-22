@@ -15,11 +15,11 @@ const timeline = [
   { year: '2018', event: 'Founded in India with a team of 5 engineers.' },
   { year: '2019', event: 'First enterprise client — cloud migration for a fintech startup.' },
   { year: '2020', event: 'Expanded into AI & Data Science practice.' },
-  { year: '2021', event: 'Opened UK operations hub. Crossed 100 projects.' },
+  { year: '2021', event: 'Opened UK operations hub.' },
   { year: '2022', event: 'ServiceNow and SAP BTP capabilities launched.' },
-  { year: '2023', event: 'US partnerships established. Team crossed 80+.' },
+  { year: '2023', event: 'US partnerships established. Team expanded.' },
   { year: '2024', event: 'Digital Experience Platforms practice launched.' },
-  { year: '2025', event: '500+ projects delivered. 100+ team members. 15+ countries.' },
+  { year: '2025', event: 'Multiple projects delivered.' },
 ]
 
 const team = [
