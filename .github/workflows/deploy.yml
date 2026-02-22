@@ -62,23 +62,7 @@ jobs:
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+          FTP_PASS_B64: ${{ secrets.FTP_PASSWORD_B64 }}
         run: |
-          # Write credentials to netrc to avoid shell escaping issues
-          python3 -c "
-          import os
-          host = os.environ['FTP_HOST']
-          user = os.environ['FTP_USER']
-          pw = os.environ['FTP_PASS']
-          with open(os.path.expanduser('~/.netrc'), 'w') as f:
-              f.write(f'machine {host}\nlogin {user}\npassword {pw}\n')
-          "
-          chmod 600 ~/.netrc
-          lftp -c "
-            set ftp:ssl-allow no;
-            set net:max-retries 3;
-            set net:timeout 30;
-            open $FTP_HOST;
-            mirror --reverse --delete --verbose ./dist/ /public_html/;
-            quit;
-          "
+          FTP_PASS=$(echo "$FTP_PASS_B64" | base64 -d)
+          lftp -u "$FTP_USER,$FTP_PASS" -e "set ftp:ssl-allow no; set net:max-retries 3; set net:timeout 30; mirror --reverse --delete --verbose ./dist/ /public_html/; quit" "$FTP_HOST"
