@@ -2,13 +2,8 @@
 /**
  * DCIMAL Contact Form Backend
  *
- * Designed for Hostinger hosting — uses PHP mail() which works natively
- * with Hostinger's built-in email service.
- *
- * Configuration:
- * - Set $recipient to your Hostinger email address
- * - Ensure your Hostinger email account is set up (hPanel > Emails)
- * - This file should be deployed to your Hostinger public_html/api/ directory
+ * Sends email via Hostinger SMTP (authenticated) instead of mail().
+ * SMTP credentials are injected at deploy time via smtp_config.php.
  */
 
 header('Content-Type: application/json');
@@ -29,8 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // ============================================
-// CONFIGURATION — Update these for your setup
+// CONFIGURATION
 // ============================================
+$config_file = __DIR__ . '/smtp_config.php';
+if (!file_exists($config_file)) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Server mail configuration missing']);
+    exit();
+}
+require $config_file;
+// Expects: $smtp_host, $smtp_port, $smtp_user, $smtp_pass
+
 $recipient = 'info@dcimal.in';
 $site_name = 'DCIMAL Website';
 // ============================================
@@ -55,32 +59,112 @@ if (empty($name) || !$email || empty($message)) {
     exit();
 }
 
-// Build email
+// Build email content
 $subject = "New Contact: {$name}" . ($company !== 'Not specified' ? " ({$company})" : '');
 
-$body = "New contact form submission from {$site_name}\n";
-$body .= "=============================================\n\n";
-$body .= "Name:    {$name}\n";
-$body .= "Email:   {$email}\n";
-$body .= "Company: {$company}\n\n";
-$body .= "Message:\n";
-$body .= "---------------------------------------------\n";
-$body .= "{$message}\n";
-$body .= "---------------------------------------------\n\n";
-$body .= "Sent at: " . date('Y-m-d H:i:s T') . "\n";
+$body  = "New contact form submission from {$site_name}\r\n";
+$body .= "=============================================\r\n\r\n";
+$body .= "Name:    {$name}\r\n";
+$body .= "Email:   {$email}\r\n";
+$body .= "Company: {$company}\r\n\r\n";
+$body .= "Message:\r\n";
+$body .= "---------------------------------------------\r\n";
+$body .= "{$message}\r\n";
+$body .= "---------------------------------------------\r\n\r\n";
+$body .= "Sent at: " . date('Y-m-d H:i:s T') . "\r\n";
 
-$headers  = "From: {$site_name} <noreply@dcimal.in>\r\n";
-$headers .= "Reply-To: {$name} <{$email}>\r\n";
-$headers .= "X-Mailer: DCIMAL-Contact/1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+// ============================================
+// SMTP SEND (SSL, port 465)
+// ============================================
+function smtp_send($host, $port, $user, $pass, $from, $to, $subject, $body, $reply_to, $from_name) {
+    $socket = @stream_socket_client(
+        "ssl://{$host}:{$port}",
+        $errno, $errstr, 30,
+        STREAM_CLIENT_CONNECT,
+        stream_context_create(['ssl' => ['verify_peer' => false, 'verify_peer_name' => false]])
+    );
 
-$sent = mail($recipient, $subject, $body, $headers);
+    if (!$socket) {
+        return "Connection failed: {$errstr} ({$errno})";
+    }
 
-if ($sent) {
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '220') return "Server didn't respond with 220: {$resp}";
+
+    // EHLO
+    fwrite($socket, "EHLO dcimal.in\r\n");
+    $resp = '';
+    while ($line = fgets($socket, 512)) {
+        $resp .= $line;
+        if (substr($line, 3, 1) === ' ') break;
+    }
+
+    // AUTH LOGIN
+    fwrite($socket, "AUTH LOGIN\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '334') return "AUTH LOGIN failed: {$resp}";
+
+    fwrite($socket, base64_encode($user) . "\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '334') return "Username rejected: {$resp}";
+
+    fwrite($socket, base64_encode($pass) . "\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '235') return "Authentication failed: {$resp}";
+
+    // MAIL FROM
+    fwrite($socket, "MAIL FROM:<{$from}>\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '250') return "MAIL FROM rejected: {$resp}";
+
+    // RCPT TO
+    fwrite($socket, "RCPT TO:<{$to}>\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '250') return "RCPT TO rejected: {$resp}";
+
+    // DATA
+    fwrite($socket, "DATA\r\n");
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '354') return "DATA rejected: {$resp}";
+
+    // Headers + body
+    $msg  = "From: {$from_name} <{$from}>\r\n";
+    $msg .= "To: <{$to}>\r\n";
+    $msg .= "Reply-To: {$reply_to}\r\n";
+    $msg .= "Subject: {$subject}\r\n";
+    $msg .= "MIME-Version: 1.0\r\n";
+    $msg .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $msg .= "X-Mailer: DCIMAL-Contact/2.0\r\n";
+    $msg .= "\r\n";
+    $msg .= str_replace("\r\n.\r\n", "\r\n..\r\n", $body);
+    $msg .= "\r\n.\r\n";
+
+    fwrite($socket, $msg);
+    $resp = fgets($socket, 512);
+    if (substr($resp, 0, 3) !== '250') return "Message rejected: {$resp}";
+
+    // QUIT
+    fwrite($socket, "QUIT\r\n");
+    fclose($socket);
+
+    return true;
+}
+
+$result = smtp_send(
+    $smtp_host, $smtp_port, $smtp_user, $smtp_pass,
+    $smtp_user,          // from address (noreply@dcimal.in)
+    $recipient,          // to address (info@dcimal.in)
+    $subject,
+    $body,
+    "{$name} <{$email}>", // reply-to
+    $site_name             // from name
+);
+
+if ($result === true) {
     http_response_code(200);
     echo json_encode(['success' => true, 'message' => 'Message sent successfully']);
 } else {
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to send message. Please try again.']);
+    echo json_encode(['error' => 'Failed to send message. Please try again.', 'debug' => $result]);
 }
 ?>

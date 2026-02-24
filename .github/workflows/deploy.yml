@@ -26,6 +26,12 @@ jobs:
       - name: Copy PHP backend to dist
         run: cp -r public/api dist/api
 
+      - name: Generate SMTP config
+        env:
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          php -r "file_put_contents('dist/api/smtp_config.php', '<?php' . PHP_EOL . '\$smtp_host = \"smtp.hostinger.com\";' . PHP_EOL . '\$smtp_port = 465;' . PHP_EOL . '\$smtp_user = \"noreply@dcimal.in\";' . PHP_EOL . '\$smtp_pass = \"' . addslashes(getenv('SMTP_PASSWORD')) . '\";' . PHP_EOL);"
+
       - name: Create .htaccess
         run: |
           cat > dist/.htaccess << 'HTACCESS'

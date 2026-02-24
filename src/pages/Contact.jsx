@@ -38,12 +38,7 @@ export default function Contact() {
         setStatus('error')
       }
     } catch {
-      // Fallback: store locally if backend unavailable
-      const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]')
-      submissions.push({ ...form, timestamp: new Date().toISOString() })
-      localStorage.setItem('contactSubmissions', JSON.stringify(submissions))
-      setStatus('sent')
-      setForm({ name: '', email: '', company: '', message: '' })
+      setStatus('error')
     }
   }
 
