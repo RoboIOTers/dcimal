@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { Mail, Phone, MapPin, ArrowRight, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Check } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
+import DirectionalArrow from '../components/DirectionalArrow'
 
-const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'info@dcimal.in', href: 'mailto:info@dcimal.in' },
-  { icon: Phone, label: 'Phone', value: '+91 621 355 4103', href: 'tel:+916213554103' },
-  { icon: MapPin, label: 'Offices', value: 'India  /  UK  /  US', href: null },
-]
+const iconMap = [Mail, Phone, MapPin]
 
 export default function Contact() {
+  const { t } = useTranslation('contact')
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
+
+  const contactInfo = t('info', { returnObjects: true })
+  const whyPoints = t('whyUs.points', { returnObjects: true })
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -48,20 +50,19 @@ export default function Contact() {
   return (
     <PageTransition>
       <Helmet>
-        <title>Contact — DCIMAL</title>
-        <meta name="description" content="Get in touch with DCIMAL — let's discuss your digital transformation goals." />
+        <title>{t('meta.title')}</title>
+        <meta name="description" content={t('meta.description')} />
       </Helmet>
 
       {/* Hero */}
       <section className="px-6 max-w-6xl mx-auto pt-32 pb-16">
         <Reveal>
-          <p className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Get in Touch</p>
+          <p className="font-mono text-xs text-muted uppercase tracking-widest mb-4">{t('hero.tagline')}</p>
           <h1 className="font-heading text-4xl md:text-6xl font-bold tracking-tight">
-            Let's Talk
+            {t('hero.heading')}
           </h1>
           <p className="text-muted text-lg mt-6 max-w-xl leading-relaxed">
-            Have a project in mind? We'd love to hear about it.
-            We typically respond within 24 hours.
+            {t('hero.description')}
           </p>
         </Reveal>
       </section>
@@ -69,37 +70,36 @@ export default function Contact() {
       {/* Contact Grid */}
       <section className="px-6 max-w-6xl mx-auto pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left: Info */}
+          {/* Info */}
           <Reveal>
             <div>
               <div className="space-y-8 mb-12">
-                {contactInfo.map(({ icon: Icon, label, value, href }) => (
-                  <div key={label} className="flex items-start gap-4">
-                    <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
-                      <Icon size={16} className="text-accent" />
+                {contactInfo.map((item, i) => {
+                  const Icon = iconMap[i]
+                  return (
+                    <div key={item.label} className="flex items-start gap-4">
+                      <div className="w-10 h-10 flex items-center justify-center border border-border shrink-0">
+                        <Icon size={16} className="text-accent" />
+                      </div>
+                      <div>
+                        <p className="font-mono text-xs text-muted uppercase tracking-widest">{item.label}</p>
+                        {item.href ? (
+                          <a href={item.href} className="text-text hover:text-accent transition-colors mt-1 block">
+                            {item.value}
+                          </a>
+                        ) : (
+                          <p className="text-text mt-1">{item.value}</p>
+                        )}
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-mono text-xs text-muted uppercase tracking-widest">{label}</p>
-                      {href ? (
-                        <a href={href} className="text-text hover:text-accent transition-colors mt-1 block">
-                          {value}
-                        </a>
-                      ) : (
-                        <p className="text-text mt-1">{value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
 
               <div className="border-t border-border pt-8">
-                <h3 className="font-heading text-lg font-medium mb-4">Why DCIMAL?</h3>
+                <h3 className="font-heading text-lg font-medium mb-4">{t('whyUs.heading')}</h3>
                 <div className="space-y-3">
-                  {[
-                    '500+ projects delivered across 15+ countries',
-                    'Deep expertise in cloud, AI, and enterprise platforms',
-                    'Dedicated team with 99% client satisfaction',
-                  ].map((point, i) => (
+                  {whyPoints.map((point, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <span className="w-1 h-1 bg-accent rounded-full shrink-0" />
                       <span className="text-sm text-muted">{point}</span>
@@ -110,7 +110,7 @@ export default function Contact() {
             </div>
           </Reveal>
 
-          {/* Right: Form */}
+          {/* Form */}
           <Reveal delay={0.1}>
             <div>
               {status === 'sent' ? (
@@ -118,20 +118,20 @@ export default function Contact() {
                   <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-accent rounded-full">
                     <Check size={20} className="text-accent" />
                   </div>
-                  <h3 className="font-heading text-xl font-medium mb-2">Message received.</h3>
-                  <p className="text-sm text-muted">We'll get back to you within 24 hours.</p>
+                  <h3 className="font-heading text-xl font-medium mb-2">{t('success.heading')}</h3>
+                  <p className="text-sm text-muted">{t('success.description')}</p>
                   <button
                     onClick={() => setStatus('idle')}
                     className="mt-6 text-sm text-accent hover:underline"
                   >
-                    Send another message
+                    {t('success.sendAnother')}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label className="font-mono text-xs text-muted uppercase tracking-widest block mb-2">
-                      Name *
+                      {t('form.name')} {t('form.required')}
                     </label>
                     <input
                       type="text"
@@ -140,13 +140,13 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full bg-transparent border border-border px-4 py-3 text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors"
-                      placeholder="Your full name"
+                      placeholder={t('form.namePlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label className="font-mono text-xs text-muted uppercase tracking-widest block mb-2">
-                      Email *
+                      {t('form.email')} {t('form.required')}
                     </label>
                     <input
                       type="email"
@@ -155,13 +155,13 @@ export default function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full bg-transparent border border-border px-4 py-3 text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors"
-                      placeholder="you@company.com"
+                      placeholder={t('form.emailPlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label className="font-mono text-xs text-muted uppercase tracking-widest block mb-2">
-                      Company
+                      {t('form.company')}
                     </label>
                     <input
                       type="text"
@@ -169,13 +169,13 @@ export default function Contact() {
                       value={form.company}
                       onChange={handleChange}
                       className="w-full bg-transparent border border-border px-4 py-3 text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors"
-                      placeholder="Company name"
+                      placeholder={t('form.companyPlaceholder')}
                     />
                   </div>
 
                   <div>
                     <label className="font-mono text-xs text-muted uppercase tracking-widest block mb-2">
-                      Message *
+                      {t('form.message')} {t('form.required')}
                     </label>
                     <textarea
                       name="message"
@@ -184,12 +184,12 @@ export default function Contact() {
                       required
                       rows={5}
                       className="w-full bg-transparent border border-border px-4 py-3 text-sm text-text placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors resize-none"
-                      placeholder="Tell us about your project..."
+                      placeholder={t('form.messagePlaceholder')}
                     />
                   </div>
 
                   {status === 'error' && (
-                    <p className="text-sm text-red-400">Something went wrong. Please try again.</p>
+                    <p className="text-sm text-red-400">{t('error')}</p>
                   )}
 
                   <button
@@ -197,8 +197,8 @@ export default function Contact() {
                     disabled={status === 'sending'}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg font-medium text-sm hover:bg-accent/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {status === 'sending' ? 'Sending...' : 'Send Message'}
-                    {status !== 'sending' && <ArrowRight size={16} />}
+                    {status === 'sending' ? t('form.sending') : t('form.submit')}
+                    {status !== 'sending' && <DirectionalArrow size={16} />}
                   </button>
                 </form>
               )}

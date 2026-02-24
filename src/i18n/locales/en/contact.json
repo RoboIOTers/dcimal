@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "Contact — DCIMAL",
+    "description": "Get in touch with DCIMAL — let's discuss your digital transformation goals."
+  },
+  "hero": {
+    "tagline": "Get in Touch",
+    "heading": "Let's Talk",
+    "description": "Have a project in mind? We'd love to hear about it. We typically respond within 24 hours."
+  },
+  "info": [
+    { "label": "Email", "value": "info@dcimal.in", "href": "mailto:info@dcimal.in" },
+    { "label": "Phone", "value": "+91 621 355 4103", "href": "tel:+916213554103" },
+    { "label": "Offices", "value": "India  /  UK  /  US", "href": null }
+  ],
+  "whyUs": {
+    "heading": "Why DCIMAL?",
+    "points": [
+      "500+ projects delivered across 15+ countries",
+      "Deep expertise in cloud, AI, and enterprise platforms",
+      "Dedicated team with 99% client satisfaction"
+    ]
+  },
+  "form": {
+    "name": "Name",
+    "namePlaceholder": "Your full name",
+    "email": "Email",
+    "emailPlaceholder": "you@company.com",
+    "company": "Company",
+    "companyPlaceholder": "Company name",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your project...",
+    "required": "*",
+    "submit": "Send Message",
+    "sending": "Sending..."
+  },
+  "success": {
+    "heading": "Message received.",
+    "description": "We'll get back to you within 24 hours.",
+    "sendAnother": "Send another message"
+  },
+  "error": "Something went wrong. Please try again."
+}

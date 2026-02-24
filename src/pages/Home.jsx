@@ -1,38 +1,25 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import PageTransition from '../components/PageTransition'
 import Reveal from '../components/Reveal'
-
-const phrases = [
-  'Cloud Migration.',
-  'AI-Powered Analytics.',
-  'Enterprise Platforms.',
-  'Digital Experiences.',
-  'Software That Scales.',
-]
-
-const stats = [
-  { value: '500+', label: 'Projects Delivered' },
-  { value: '50+', label: 'Enterprise Clients' },
-  { value: '15+', label: 'Countries Served' },
-  { value: '99%', label: 'Client Satisfaction' },
-]
-
-const services = [
-  { title: 'Cloud Solutions', brief: 'AWS, Azure, GCP — migration, optimization, and cloud-native development.' },
-  { title: 'AI & Data Science', brief: 'Predictive analytics, ML pipelines, and intelligent automation.' },
-  { title: 'ServiceNow', brief: 'ITSM, ITOM, and workflow automation on the Now Platform.' },
-  { title: 'SAP BTP', brief: 'Integration, extension, and innovation on SAP Business Technology Platform.' },
-  { title: 'Digital Experience', brief: 'Umbraco, Sitecore, Optimizely — composable content platforms.' },
-  { title: 'Web & Software', brief: 'Custom applications, JAMStack, and composable architecture.' },
-]
+import DirectionalArrow from '../components/DirectionalArrow'
 
 function TypingHero() {
+  const { t, i18n } = useTranslation('home')
+  const phrases = t('phrases', { returnObjects: true })
+  const isRTL = i18n.language === 'ar'
+
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
+
+  useEffect(() => {
+    setPhraseIndex(0)
+    setCharIndex(0)
+    setDeleting(false)
+  }, [i18n.language])
 
   useEffect(() => {
     const current = phrases[phraseIndex]
@@ -50,41 +37,45 @@ function TypingHero() {
     }
 
     return () => clearTimeout(timeout)
-  }, [charIndex, deleting, phraseIndex])
+  }, [charIndex, deleting, phraseIndex, phrases])
 
   return (
     <span className="text-accent">
+      {isRTL && <span className="cursor-blink text-accent">|</span>}
       {phrases[phraseIndex].substring(0, charIndex)}
-      <span className="cursor-blink text-accent">|</span>
+      {!isRTL && <span className="cursor-blink text-accent">|</span>}
     </span>
   )
 }
 
 export default function Home() {
+  const { t } = useTranslation('home')
+  const stats = t('stats', { returnObjects: true })
+  const serviceItems = t('services.items', { returnObjects: true })
+
   return (
     <PageTransition>
       <Helmet>
-        <title>DCIMAL — Think Digital</title>
-        <meta name="description" content="DCIMAL empowers organizations with digital transformation — cloud, AI, enterprise platforms, and custom software development." />
+        <title>{t('meta.title')}</title>
+        <meta name="description" content={t('meta.description')} />
       </Helmet>
 
       {/* Hero */}
       <section className="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto pt-16">
         <Reveal>
           <p className="font-mono text-xs text-muted uppercase tracking-widest mb-6">
-            Think Digital with DCIMAL
+            {t('hero.tagline')}
           </p>
         </Reveal>
         <Reveal delay={0.1}>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight">
-            We build<br />
+            {t('hero.heading1')}<br />
             <TypingHero />
           </h1>
         </Reveal>
         <Reveal delay={0.2}>
           <p className="text-muted text-lg mt-8 max-w-xl leading-relaxed">
-            Digital transformation partner for enterprises ready to move fast,
-            scale smart, and compete globally.
+            {t('hero.description')}
           </p>
         </Reveal>
         <Reveal delay={0.3}>
@@ -93,13 +84,13 @@ export default function Home() {
               to="/services"
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-bg font-medium text-sm hover:bg-accent/90 transition-colors"
             >
-              Explore Services <ArrowRight size={16} />
+              {t('hero.cta1')} <DirectionalArrow size={16} />
             </Link>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-6 py-3 border border-border text-text text-sm hover:border-accent hover:text-accent transition-colors"
             >
-              Let's Talk
+              {t('hero.cta2')}
             </Link>
           </div>
         </Reveal>
@@ -109,10 +100,10 @@ export default function Home() {
       <section className="px-6 max-w-6xl mx-auto py-24">
         <Reveal>
           <div className="border-t border-b border-border py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map(({ value, label }, i) => (
+            {stats.map((stat, i) => (
               <div key={i} className="text-center">
-                <p className="font-mono text-3xl md:text-4xl font-bold text-accent">{value}</p>
-                <p className="font-mono text-xs text-muted uppercase tracking-widest mt-2">{label}</p>
+                <p className="font-mono text-3xl md:text-4xl font-bold text-accent">{stat.value}</p>
+                <p className="font-mono text-xs text-muted uppercase tracking-widest mt-2">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -123,11 +114,11 @@ export default function Home() {
       <section className="px-6 max-w-6xl mx-auto pb-32">
         <Reveal>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mb-12">
-            What we do
+            {t('services.heading')}
           </h2>
         </Reveal>
         <div className="space-y-0">
-          {services.map(({ title, brief }, i) => (
+          {serviceItems.map((item, i) => (
             <Reveal key={i} delay={i * 0.05}>
               <Link
                 to="/services"
@@ -136,11 +127,11 @@ export default function Home() {
                 <div className="flex items-center gap-4">
                   <span className="font-mono text-xs text-muted w-6">{String(i + 1).padStart(2, '0')}</span>
                   <span className="font-heading text-lg font-medium group-hover:text-accent transition-colors">
-                    {title}
+                    {item.title}
                   </span>
                 </div>
-                <span className="text-sm text-muted mt-2 sm:mt-0 sm:text-right max-w-md pl-10 sm:pl-0">
-                  {brief}
+                <span className="text-sm text-muted mt-2 sm:mt-0 sm:text-end max-w-md ps-10 sm:ps-0">
+                  {item.brief}
                 </span>
               </Link>
             </Reveal>
@@ -150,15 +141,15 @@ export default function Home() {
         {/* Final CTA */}
         <Reveal>
           <div className="mt-24 text-center">
-            <p className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Ready?</p>
+            <p className="font-mono text-xs text-muted uppercase tracking-widest mb-4">{t('cta.ready')}</p>
             <h2 className="font-heading text-3xl md:text-5xl font-bold mb-8">
-              Let's build something<br /><span className="text-accent">that matters.</span>
+              {t('cta.heading')}<br /><span className="text-accent">{t('cta.headingAccent')}</span>
             </h2>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg font-medium text-sm hover:bg-accent/90 transition-colors"
             >
-              Start a Conversation <ArrowRight size={16} />
+              {t('cta.button')} <DirectionalArrow size={16} />
             </Link>
           </div>
         </Reveal>

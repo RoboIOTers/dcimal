@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
+  const { t } = useTranslation('common')
+
+  const navLinks = [
+    { to: '/services', label: t('nav.services') },
+    { to: '/case-studies', label: t('nav.caseStudies') },
+    { to: '/about', label: t('nav.about') },
+    { to: '/contact', label: t('nav.letsTalk') },
+  ]
+
   return (
     <footer className="border-t border-border bg-bg">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -12,21 +22,15 @@ export default function Footer() {
               <span className="text-accent">d</span>cimal
             </Link>
             <p className="text-muted text-sm mt-4 max-w-sm leading-relaxed">
-              Empowering organizations with digital transformation solutions
-              that drive sustainable growth and competitive advantage.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <h4 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Navigate</h4>
+            <h4 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">{t('footer.navigate')}</h4>
             <div className="flex flex-col gap-3">
-              {[
-                { to: '/services', label: 'Services' },
-                { to: '/case-studies', label: 'Case Studies' },
-                { to: '/about', label: 'About' },
-                { to: '/contact', label: 'Contact' },
-              ].map(({ to, label }) => (
+              {navLinks.map(({ to, label }) => (
                 <Link key={to} to={to} className="text-sm text-muted hover:text-text transition-colors">
                   {label}
                 </Link>
@@ -36,7 +40,7 @@ export default function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">Connect</h4>
+            <h4 className="font-mono text-xs text-muted uppercase tracking-widest mb-4">{t('footer.connect')}</h4>
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:info@dcimal.in"
@@ -73,10 +77,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="font-mono text-xs text-muted">
-            &copy; {new Date().getFullYear()} DCIMAL. All rights reserved.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
           <p className="font-mono text-xs text-muted">
-            India &middot; United Kingdom &middot; United States
+            {t('footer.locations')}
           </p>
         </div>
       </div>

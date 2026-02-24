@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "title": "Case Studies — DCIMAL",
+    "description": "Real results from real clients — see how DCIMAL delivers digital transformation across industries."
+  },
+  "hero": {
+    "tagline": "The Proof",
+    "heading": "Case Studies",
+    "description": "Real problems. Real solutions. Measurable outcomes."
+  },
+  "tableHeader": {
+    "year": "Year",
+    "industry": "Industry",
+    "project": "Project",
+    "impact": "Impact"
+  },
+  "labels": {
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results"
+  },
+  "studies": [
+    {
+      "id": 1,
+      "year": "2024",
+      "industry": "Financial Services",
+      "title": "Enterprise Cloud Migration",
+      "result": "40% cost reduction",
+      "challenge": "A major financial services firm was running legacy on-premise infrastructure that was costly, fragile, and unable to scale for peak trading volumes.",
+      "solution": "We architected a multi-region AWS migration strategy with zero-downtime cutover, containerized microservices, and automated disaster recovery.",
+      "outcomes": [
+        "40% reduction in infrastructure costs",
+        "99.99% uptime achieved",
+        "3x faster deployment cycles",
+        "SOC 2 and PCI DSS compliance maintained"
+      ],
+      "tech": ["AWS", "Kubernetes", "Terraform", "PostgreSQL"]
+    },
+    {
+      "id": 2,
+      "year": "2024",
+      "industry": "Manufacturing",
+      "title": "AI-Powered Predictive Maintenance",
+      "result": "60% fewer breakdowns",
+      "challenge": "Unplanned equipment downtime was costing a global manufacturer millions annually. Existing maintenance was reactive, not predictive.",
+      "solution": "We built ML models trained on IoT sensor data to predict equipment failures 48 hours in advance, with automated alerting and maintenance scheduling.",
+      "outcomes": [
+        "60% reduction in unplanned downtime",
+        "$2.3M annual savings in maintenance",
+        "48-hour advance failure prediction",
+        "Real-time monitoring dashboard"
+      ],
+      "tech": ["Python", "TensorFlow", "Azure IoT", "Databricks"]
+    },
+    {
+      "id": 3,
+      "year": "2023",
+      "industry": "Healthcare",
+      "title": "ServiceNow ITSM Transformation",
+      "result": "75% faster resolution",
+      "challenge": "A healthcare network with 15,000+ employees had fragmented IT service management — slow ticket resolution, no SLA tracking, and siloed teams.",
+      "solution": "Full ServiceNow ITSM implementation with custom workflows, automated routing, self-service portal, and CMDB integration.",
+      "outcomes": [
+        "75% faster incident resolution",
+        "90% SLA compliance (up from 45%)",
+        "50% reduction in ticket volume via self-service",
+        "Complete CMDB visibility"
+      ],
+      "tech": ["ServiceNow", "ITSM", "CMDB", "IntegrationHub"]
+    },
+    {
+      "id": 4,
+      "year": "2023",
+      "industry": "Retail",
+      "title": "SAP BTP Integration Suite",
+      "result": "35% faster order processing",
+      "challenge": "A global retailer had disconnected SAP systems across 12 countries — manual data entry, inventory mismatches, and delayed order fulfillment.",
+      "solution": "Unified SAP BTP integration connecting ERP, CRM, and supply chain systems with real-time data sync and Fiori-based dashboards.",
+      "outcomes": [
+        "35% faster order processing",
+        "Real-time inventory across 12 countries",
+        "Zero manual data entry errors",
+        "Unified reporting dashboard"
+      ],
+      "tech": ["SAP BTP", "Integration Suite", "Fiori", "S/4HANA"]
+    },
+    {
+      "id": 5,
+      "year": "2023",
+      "industry": "Energy",
+      "title": "Digital Experience Platform",
+      "result": "120% increase in engagement",
+      "challenge": "An energy company had an outdated, monolithic website that couldn't support personalization, was slow to update, and had poor mobile experience.",
+      "solution": "Headless CMS architecture with Optimizely, Next.js frontend, personalized content delivery, and progressive web app capabilities.",
+      "outcomes": [
+        "120% increase in user engagement",
+        "65% improvement in page load speed",
+        "3x content publishing velocity",
+        "Mobile-first responsive experience"
+      ],
+      "tech": ["Optimizely", "Next.js", "GraphQL", "Vercel"]
+    }
+  ],
+  "cta": {
+    "heading": "Your project could be next.",
+    "button": "Start Your Transformation"
+  }
+}

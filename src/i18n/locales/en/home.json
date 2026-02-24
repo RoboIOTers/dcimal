@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "DCIMAL — Think Digital",
+    "description": "DCIMAL empowers organizations with digital transformation — cloud, AI, enterprise platforms, and custom software development."
+  },
+  "hero": {
+    "tagline": "Think Digital with DCIMAL",
+    "heading1": "We build",
+    "description": "Digital transformation partner for enterprises ready to move fast, scale smart, and compete globally.",
+    "cta1": "Explore Services",
+    "cta2": "Let's Talk"
+  },
+  "phrases": [
+    "Cloud Migration.",
+    "AI-Powered Analytics.",
+    "Enterprise Platforms.",
+    "Digital Experiences.",
+    "Software That Scales."
+  ],
+  "stats": [
+    { "value": "500+", "label": "Projects Delivered" },
+    { "value": "50+", "label": "Enterprise Clients" },
+    { "value": "15+", "label": "Countries Served" },
+    { "value": "99%", "label": "Client Satisfaction" }
+  ],
+  "services": {
+    "heading": "What we do",
+    "items": [
+      { "title": "Cloud Solutions", "brief": "AWS, Azure, GCP — migration, optimization, and cloud-native development." },
+      { "title": "AI & Data Science", "brief": "Predictive analytics, ML pipelines, and intelligent automation." },
+      { "title": "ServiceNow", "brief": "ITSM, ITOM, and workflow automation on the Now Platform." },
+      { "title": "SAP BTP", "brief": "Integration, extension, and innovation on SAP Business Technology Platform." },
+      { "title": "Digital Experience", "brief": "Umbraco, Sitecore, Optimizely — composable content platforms." },
+      { "title": "Web & Software", "brief": "Custom applications, JAMStack, and composable architecture." }
+    ]
+  },
+  "cta": {
+    "ready": "Ready?",
+    "heading": "Let's build something",
+    "headingAccent": "that matters.",
+    "button": "Start a Conversation"
+  }
+}

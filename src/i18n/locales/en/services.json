@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "title": "Services — DCIMAL",
+    "description": "Cloud, AI, ServiceNow, SAP BTP, DXP, and custom software development services from DCIMAL."
+  },
+  "hero": {
+    "tagline": "What We Do",
+    "heading": "Services",
+    "description": "Six capabilities. One mission — accelerate your digital transformation with precision and purpose."
+  },
+  "items": [
+    {
+      "id": "cloud",
+      "title": "Cloud Solutions",
+      "description": "End-to-end cloud strategy, migration, and optimization. We architect resilient, cost-efficient infrastructure on AWS, Azure, and Google Cloud — enabling your business to scale without limits.",
+      "stack": ["AWS", "Azure", "GCP", "Terraform", "Kubernetes", "Docker", "CI/CD"],
+      "features": [
+        "Cloud migration & modernization",
+        "Infrastructure as Code",
+        "Cost optimization & FinOps",
+        "Multi-cloud architecture",
+        "Serverless & containerization",
+        "Security & compliance"
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI & Data Science",
+      "description": "Turn raw data into competitive advantage. From predictive analytics to computer vision and NLP — we build intelligent systems that automate decisions and uncover insights at scale.",
+      "stack": ["Python", "TensorFlow", "PyTorch", "Spark", "Databricks", "Power BI", "Tableau"],
+      "features": [
+        "Predictive analytics & forecasting",
+        "Machine learning pipelines",
+        "Natural language processing",
+        "Computer vision solutions",
+        "Data engineering & ETL",
+        "Business intelligence dashboards"
+      ]
+    },
+    {
+      "id": "servicenow",
+      "title": "ServiceNow",
+      "description": "Streamline IT operations and enterprise workflows on the Now Platform. We implement, customize, and optimize ServiceNow to automate your most critical business processes.",
+      "stack": ["ServiceNow", "ITSM", "ITOM", "HRSD", "CSM", "IntegrationHub", "Flow Designer"],
+      "features": [
+        "ITSM implementation & optimization",
+        "IT Operations Management",
+        "HR Service Delivery",
+        "Customer Service Management",
+        "Custom app development",
+        "Integration & automation"
+      ]
+    },
+    {
+      "id": "sap",
+      "title": "SAP BTP",
+      "description": "Extend and innovate on SAP Business Technology Platform. We connect your SAP ecosystem with modern cloud services, enabling real-time analytics, integration, and intelligent automation.",
+      "stack": ["SAP BTP", "SAP HANA", "SAP Fiori", "CAP", "ABAP Cloud", "Integration Suite"],
+      "features": [
+        "BTP implementation & configuration",
+        "SAP integration & extension",
+        "Fiori app development",
+        "HANA Cloud analytics",
+        "Workflow automation",
+        "Migration to S/4HANA"
+      ]
+    },
+    {
+      "id": "dxp",
+      "title": "Digital Experience Platforms",
+      "description": "Craft compelling digital experiences with enterprise content platforms. We build composable, personalized web experiences that drive engagement and conversion.",
+      "stack": ["Umbraco", "Sitecore", "Optimizely", "Next.js", "GraphQL", "Headless CMS"],
+      "features": [
+        "Platform selection & architecture",
+        "Headless & composable CMS",
+        "Personalization engines",
+        "Multi-channel content delivery",
+        "Performance optimization",
+        "Migration & upgrades"
+      ]
+    },
+    {
+      "id": "web",
+      "title": "Web & Software Development",
+      "description": "Custom software built for performance, scalability, and maintainability. From JAMStack frontends to complex backend systems — we deliver production-grade code.",
+      "stack": ["React", "Next.js", "Node.js", "Python", ".NET", "PostgreSQL", "Redis"],
+      "features": [
+        "Full-stack web applications",
+        "JAMStack & composable architecture",
+        "API design & development",
+        "Mobile-responsive interfaces",
+        "Performance engineering",
+        "DevOps & deployment"
+      ]
+    }
+  ],
+  "process": {
+    "heading": "Our Process",
+    "steps": [
+      { "step": "01", "title": "Discovery", "description": "We audit your systems, map pain points, and define clear objectives." },
+      { "step": "02", "title": "Strategy", "description": "We architect a solution with the right technologies and a phased roadmap." },
+      { "step": "03", "title": "Implementation", "description": "Agile delivery with continuous feedback, testing, and iteration." },
+      { "step": "04", "title": "Support", "description": "Post-launch monitoring, optimization, and knowledge transfer." }
+    ]
+  },
+  "cta": {
+    "heading": "Need a tailored solution?",
+    "button": "Get in Touch"
+  }
+}

@@ -8,9 +8,11 @@ import CaseStudies from './pages/CaseStudies'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import ScrollToTop from './components/ScrollToTop'
+import useDirection from './hooks/useDirection'
 
 export default function App() {
   const location = useLocation()
+  useDirection()
 
   return (
     <>

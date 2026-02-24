@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "تواصل معنا — DCIMAL",
+    "description": "تواصل مع DCIMAL — دعنا نناقش أهداف تحوّلك الرقمي."
+  },
+  "hero": {
+    "tagline": "تواصل معنا",
+    "heading": "لنتحدث",
+    "description": "لديك مشروع في بالك؟ نسعد بسماعه. نرد عادةً خلال ٢٤ ساعة."
+  },
+  "info": [
+    { "label": "البريد الإلكتروني", "value": "info@dcimal.in", "href": "mailto:info@dcimal.in" },
+    { "label": "الهاتف", "value": "+91 621 355 4103", "href": "tel:+916213554103" },
+    { "label": "المكاتب", "value": "الهند / المملكة المتحدة / الولايات المتحدة", "href": null }
+  ],
+  "whyUs": {
+    "heading": "لماذا DCIMAL؟",
+    "points": [
+      "أكثر من ٥٠٠ مشروع مُنجز في أكثر من ١٥ دولة",
+      "خبرة عميقة في السحابة والذكاء الاصطناعي والمنصات المؤسسية",
+      "فريق متخصص برضا عملاء ٩٩٪"
+    ]
+  },
+  "form": {
+    "name": "الاسم",
+    "namePlaceholder": "اسمك الكامل",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "you@company.com",
+    "company": "الشركة",
+    "companyPlaceholder": "اسم الشركة",
+    "message": "الرسالة",
+    "messagePlaceholder": "أخبرنا عن مشروعك...",
+    "required": "*",
+    "submit": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال..."
+  },
+  "success": {
+    "heading": "تم استلام رسالتك.",
+    "description": "سنعود إليك خلال ٢٤ ساعة.",
+    "sendAnother": "إرسال رسالة أخرى"
+  },
+  "error": "حدث خطأ. يرجى المحاولة مرة أخرى."
+}

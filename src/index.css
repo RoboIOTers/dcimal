@@ -66,3 +66,14 @@
 .cursor-blink {
   animation: blink 1s infinite;
 }
+
+/* RTL Arabic font overrides */
+html[dir="rtl"] {
+  --font-heading: 'IBM Plex Sans Arabic', sans-serif;
+  --font-body: 'Noto Sans Arabic', sans-serif;
+}
+
+html[dir="rtl"] body {
+  letter-spacing: 0;
+  line-height: 1.8;
+}

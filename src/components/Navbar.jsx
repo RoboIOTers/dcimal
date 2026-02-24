@@ -1,18 +1,26 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/services', label: 'Services' },
-  { to: '/case-studies', label: 'Case Studies' },
-  { to: '/about', label: 'About' },
-]
+import { useTranslation } from 'react-i18next'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
+  const { t, i18n } = useTranslation('common')
+
+  const links = [
+    { to: '/', label: t('nav.home') },
+    { to: '/services', label: t('nav.services') },
+    { to: '/case-studies', label: t('nav.caseStudies') },
+    { to: '/about', label: t('nav.about') },
+  ]
+
+  const toggleLanguage = () => {
+    const next = i18n.language === 'ar' ? 'en' : 'ar'
+    i18n.changeLanguage(next)
+    localStorage.setItem('dcimal-lang', next)
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -51,11 +59,17 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <button
+            onClick={toggleLanguage}
+            className="font-mono text-xs font-medium px-3 py-1.5 border border-border text-muted hover:text-accent hover:border-accent transition-colors duration-200"
+          >
+            {i18n.language === 'ar' ? 'EN' : 'AR'}
+          </button>
           <Link
             to="/contact"
             className="text-sm font-medium px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg transition-all duration-200"
           >
-            Let's Talk
+            {t('nav.letsTalk')}
           </Link>
         </div>
 
@@ -84,11 +98,17 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
+            <button
+              onClick={toggleLanguage}
+              className="font-mono text-xs font-medium px-3 py-1.5 border border-border text-muted hover:text-accent hover:border-accent transition-colors duration-200 w-fit"
+            >
+              {i18n.language === 'ar' ? 'EN' : 'AR'}
+            </button>
             <Link
               to="/contact"
               className="text-sm font-medium px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg transition-all duration-200 text-center"
             >
-              Let's Talk
+              {t('nav.letsTalk')}
             </Link>
           </div>
         </div>

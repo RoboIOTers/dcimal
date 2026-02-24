@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "title": "About — DCIMAL",
+    "description": "DCIMAL is a digital transformation company empowering enterprises across 15+ countries with cloud, AI, and enterprise solutions."
+  },
+  "hero": {
+    "tagline": "Who We Are",
+    "heading": "About DCIMAL"
+  },
+  "mission": {
+    "label": "Mission",
+    "text": "Empower organizations with digital solutions that drive sustainable growth and competitive advantage."
+  },
+  "vision": {
+    "label": "Vision",
+    "text": "Be the global leader in digital transformation — recognized for expertise that seamlessly integrates with business strategy."
+  },
+  "values": {
+    "heading": "Core Values",
+    "items": [
+      { "word": "Innovation", "brief": "We embrace cutting-edge technology to solve hard problems." },
+      { "word": "Partnership", "brief": "Your success is our success — we build lasting relationships." },
+      { "word": "Excellence", "brief": "Every deliverable meets the highest standard of quality." },
+      { "word": "Agility", "brief": "We move fast, adapt quickly, and deliver iteratively." }
+    ]
+  },
+  "timeline": {
+    "heading": "Our Journey",
+    "items": [
+      { "year": "2018", "event": "Founded in India with a team of 5 engineers." },
+      { "year": "2019", "event": "First enterprise client — cloud migration for a fintech startup." },
+      { "year": "2020", "event": "Expanded into AI & Data Science practice." },
+      { "year": "2021", "event": "Opened UK operations hub." },
+      { "year": "2022", "event": "ServiceNow and SAP BTP capabilities launched." },
+      { "year": "2023", "event": "US partnerships established. Team expanded." },
+      { "year": "2024", "event": "Digital Experience Platforms practice launched." },
+      { "year": "2025", "event": "Multiple projects delivered." }
+    ]
+  },
+  "team": {
+    "heading": "Leadership",
+    "members": [
+      { "name": "Arjun Mehta", "role": "Founder & CEO", "detail": "15+ years in enterprise technology" },
+      { "name": "Priya Sharma", "role": "CTO", "detail": "Cloud architecture & AI specialist" },
+      { "name": "James Wilson", "role": "VP, UK Operations", "detail": "Enterprise sales & delivery" },
+      { "name": "Dr. Kavitha Rao", "role": "Head of AI", "detail": "PhD in Machine Learning" },
+      { "name": "Michael Chen", "role": "Head of Cloud", "detail": "AWS & Azure certified architect" },
+      { "name": "Sarah Ahmed", "role": "Head of DXP", "detail": "Sitecore & Optimizely MVP" }
+    ]
+  },
+  "impact": {
+    "items": [
+      { "value": "500+", "label": "Projects" },
+      { "value": "50+", "label": "Clients" },
+      { "value": "100+", "label": "Team" },
+      { "value": "40%", "label": "Avg ROI Gain" }
+    ]
+  },
+  "cta": {
+    "heading": "Join our story.",
+    "button": "Work With Us"
+  }
+}

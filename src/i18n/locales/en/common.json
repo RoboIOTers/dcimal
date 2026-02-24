@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "caseStudies": "Case Studies",
+    "about": "About",
+    "letsTalk": "Let's Talk"
+  },
+  "footer": {
+    "description": "Empowering organizations with digital transformation solutions that drive sustainable growth and competitive advantage.",
+    "navigate": "Navigate",
+    "connect": "Connect",
+    "copyright": "© {{year}} DCIMAL. All rights reserved.",
+    "locations": "India · United Kingdom · United States"
+  }
+}
