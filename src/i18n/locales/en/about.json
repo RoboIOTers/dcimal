@@ -40,11 +40,11 @@
   "team": {
     "heading": "Leadership",
     "members": [
-      { "name": "Imran", "role": "Founder & CEO", "detail": "9+ years in digital transformation, automation, and data science" },
-      { "name": "Faiyaz", "role": "Co-Founder", "detail": "Azure, Sitecore, Optimizely & DXP specialist" },
-      { "name": "M. Ansari", "role": "Senior Scrum Master & Lead", "detail": "Agile delivery and cross-functional team leadership" },
-      { "name": "J. Akhter", "role": "Head of Finance", "detail": "Financial strategy and operations management" },
-      { "name": "Meraj", "role": "Head of Cybersecurity", "detail": "CISA, ISO 27001 Lead, CEH — DLP, XDR & SIEM specialist" }
+      { "name": "Imran", "role": "Founder & CEO", "detail": "10+ years in digital transformation, automation, and data science" },
+      { "name": "Faiyaz", "role": "Co-Founder", "detail": "14+ years — Azure, Sitecore, Optimizely & DXP specialist" },
+      { "name": "M. Ansari", "role": "Senior Scrum Master & Lead", "detail": "10+ years in agile delivery and cross-functional team leadership" },
+      { "name": "J. Akhter", "role": "Head of Finance", "detail": "10+ years in financial strategy and operations management" },
+      { "name": "Meraj", "role": "Head of Cybersecurity", "detail": "11+ years — CISA, ISO 27001 Lead, CEH — DLP, XDR & SIEM specialist" }
     ]
   },
   "impact": {
