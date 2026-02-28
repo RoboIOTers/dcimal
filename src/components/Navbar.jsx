@@ -73,14 +73,22 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-muted hover:text-text transition-colors"
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile: lang toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={toggleLanguage}
+            className="font-mono text-xs font-medium px-3 py-1.5 border border-border text-muted hover:text-accent hover:border-accent transition-colors duration-200"
+          >
+            {i18n.language === 'ar' ? 'EN' : 'AR'}
+          </button>
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-muted hover:text-text transition-colors"
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -98,12 +106,6 @@ export default function Navbar() {
                 {label}
               </Link>
             ))}
-            <button
-              onClick={toggleLanguage}
-              className="font-mono text-xs font-medium px-3 py-1.5 border border-border text-muted hover:text-accent hover:border-accent transition-colors duration-200 w-fit"
-            >
-              {i18n.language === 'ar' ? 'EN' : 'AR'}
-            </button>
             <Link
               to="/contact"
               className="text-sm font-medium px-5 py-2 border border-accent text-accent hover:bg-accent hover:text-bg transition-all duration-200 text-center"
