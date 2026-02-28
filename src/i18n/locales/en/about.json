@@ -40,12 +40,8 @@
   "team": {
     "heading": "Leadership",
     "members": [
-      { "name": "Arjun Mehta", "role": "Founder & CEO", "detail": "15+ years in enterprise technology" },
-      { "name": "Priya Sharma", "role": "CTO", "detail": "Cloud architecture & AI specialist" },
-      { "name": "James Wilson", "role": "VP, UK Operations", "detail": "Enterprise sales & delivery" },
-      { "name": "Dr. Kavitha Rao", "role": "Head of AI", "detail": "PhD in Machine Learning" },
-      { "name": "Michael Chen", "role": "Head of Cloud", "detail": "AWS & Azure certified architect" },
-      { "name": "Sarah Ahmed", "role": "Head of DXP", "detail": "Sitecore & Optimizely MVP" }
+      { "name": "Imran", "role": "Founder & CEO", "detail": "9+ years in digital transformation, automation, and data science" },
+      { "name": "Faiyaz", "role": "Co-Founder", "detail": "Azure, Sitecore, Optimizely & DXP specialist — ex-DEPT®" }
     ]
   },
   "impact": {

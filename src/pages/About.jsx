@@ -100,7 +100,7 @@ export default function About() {
         <Reveal>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mb-12">{t('team.heading')}</h2>
         </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
           {team.map((member, i) => (
             <Reveal key={member.name} delay={i * 0.05}>
               <div className="bg-bg p-8">
